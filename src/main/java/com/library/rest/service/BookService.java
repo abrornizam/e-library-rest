@@ -23,7 +23,5 @@ public interface BookService {
 	
 	void updateBookLeft(String idbook, int availability);
 	
-//	Testing Ajax
-	
-	Book findByYear(String year);
+	List<Book> findByYear(String year);
 }

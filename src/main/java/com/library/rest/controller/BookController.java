@@ -39,7 +39,6 @@ public class BookController {
 	@Autowired
 	AuthorService authorService;
 
-//	@CrossOrigin(origins = "http://localhost:8081")
 	@GetMapping(value = "/listBook")
 	public @ResponseBody List<Book> listBook(HttpServletResponse response) {
 		response.setContentType("application/json");
@@ -73,6 +72,13 @@ public class BookController {
 		response.setContentType("application/json");
 		response.setStatus(200);
 		bookService.deleteBook(idbook);
+	}
+	
+	@GetMapping(value = "/{year}")
+	public @ResponseBody List<Book> listBookByYear(@PathVariable String year, HttpServletResponse response) {
+		response.setContentType("application/json");
+		response.setStatus(200);
+		return bookService.findByYear(year);
 	}
 	
 }

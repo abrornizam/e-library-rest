@@ -86,9 +86,10 @@ public class BookServiceImpl implements BookService {
 	}
 
 	@Override
-	public Book findByYear(String year) {
+	public List<Book> findByYear(String year) {
 		// TODO Auto-generated method stub
-		return bookRepository.findByYear(year);
+		List<Book> listBook = bookRepository.findByYear(year);
+		return listBook;
 	}
 	
 }
