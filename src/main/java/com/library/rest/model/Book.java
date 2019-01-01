@@ -12,6 +12,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -60,7 +61,7 @@ public class Book {
 		return description;
 	}
 
-	public void setDescripiton(String description) {
+	public void setDescription(String description) {
 		this.description = description;
 	}
 
@@ -98,6 +99,18 @@ public class Book {
 		this.author = author;
 	}
 	
+	@OneToOne
+	@JoinColumn(name="idgenre", nullable = false)
+	private Genre genre;
+	
+	public Genre getGenre() {
+		return genre;
+	}
+
+	public void setGenre(Genre genre) {
+		this.genre = genre;
+	}	
+
 	@Column(name="status")
 	private Boolean status;
 
