@@ -20,7 +20,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.library.rest.model.Book;
+import com.library.rest.model.Genre;
 import com.library.rest.service.BookService;
+import com.library.rest.service.GenreService;
 import com.library.rest.service.AuthorService;
 
 /**
@@ -38,6 +40,9 @@ public class BookController {
 	
 	@Autowired
 	AuthorService authorService;
+	
+	@Autowired
+	GenreService genreService;
 
 	@GetMapping(value = "/listBook")
 	public @ResponseBody List<Book> listBook(HttpServletResponse response) {
@@ -79,6 +84,43 @@ public class BookController {
 		response.setContentType("application/json");
 		response.setStatus(200);
 		return bookService.findByYear(year);
+	}
+	
+	/* GENRE */
+	
+	@GetMapping(value = "/genre")
+	public @ResponseBody List<Genre> listGenre(HttpServletResponse response) {
+		response.setContentType("application/json");
+		response.setStatus(200);
+		return genreService.findAll();
+	}
+	
+	@PostMapping(value = "/genre/save")
+	public @ResponseBody Genre saveData(@RequestBody Genre genre, HttpServletResponse response) {
+		response.setContentType("application/json");
+		response.setStatus(200);
+		return genreService.saveData(genre);
+	}
+	
+	@GetMapping(value = "/genre/detail/{id}")
+	public @ResponseBody Genre detailGenre(@PathVariable int id, HttpServletResponse response) {
+		response.setContentType("application/json");
+		response.setStatus(200);
+		return genreService.detailData(id);
+	}
+	
+	@PutMapping(value = "/genre/edit/{id}")
+	public @ResponseBody void editGenre(@RequestBody Genre genre, HttpServletResponse response) {
+		response.setContentType("application/json");
+		response.setStatus(200);
+		genreService.updateData(genre);
+	}
+	
+	@DeleteMapping(value = "/genre/delete/{id}")
+	public @ResponseBody void deleteGenre(@PathVariable int id, HttpServletResponse response) {
+		response.setContentType("application/json");
+		response.setStatus(200);
+		genreService.deleteData(id);
 	}
 	
 }
