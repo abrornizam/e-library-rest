@@ -32,11 +32,8 @@ public class MemberController {
 	@Autowired
 	MemberService memberService;
 	
-//	@CrossOrigin
 	@GetMapping(value = "/listMember")
 	public @ResponseBody List<Member> listMember(HttpServletResponse response)  {
-    	response.setHeader("Access-Control-Allow-Origin", "*");
-//    	response.setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
 		response.setContentType("application/json");
     	response.setStatus(200);
     	return memberService.findAll();

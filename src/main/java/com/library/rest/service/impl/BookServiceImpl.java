@@ -55,7 +55,7 @@ public class BookServiceImpl implements BookService {
 		Book entity = bookRepository.findByIdbook(book.getIdbook());
 		if(entity != null) {
 			entity.setTitle(book.getTitle());
-			entity.setDescripiton(book.getDescription());
+			entity.setDescription(book.getDescription());
 			entity.setYear(book.getYear());
 			entity.setAvailability(book.getAvailability());
 			entity.setAuthor(book.getAuthor());

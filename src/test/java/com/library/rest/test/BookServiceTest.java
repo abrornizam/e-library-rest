@@ -52,7 +52,7 @@ public class BookServiceTest {
 		book.setId(1);
 		book.setIdbook("BOOK1");
 		book.setTitle("Meraih Mimpi");
-		book.setDescripiton("Desc book");
+		book.setDescription("Desc book");
 		book.setYear("2018");
 		book.setAvailability(10);
 		book.setAuthor(author);
