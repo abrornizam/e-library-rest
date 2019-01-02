@@ -24,8 +24,14 @@ public interface BookRepository extends JpaRepository<Book, Integer>{
 	
 	Book findByIdbook(String bookid);
 
-	@Query(value = "SELECT * FROM book b WHERE b.year = :year and b.status = true", nativeQuery = true)
+	@Query(value = "SELECT * FROM book b WHERE b.year = :year AND b.status = true", nativeQuery = true)
 	List<Book> findByYear(@Param("year") String year);
+	
+	@Query(value = "SELECT * FROM book b INNER JOIN genre g ON b.idgenre = g.id WHERE g.description = :genre AND b.status = true", nativeQuery = true)
+	List<Book> findByGenre(@Param("genre") String genre);
+	
+	@Query(value = "SELECT * FROM book b INNER JOIN genre g ON b.idgenre = g.id WHERE b.year = :year AND g.description = :genre AND b.status = true", nativeQuery = true)
+	List<Book> filterBook(@Param("year") String year, @Param("genre") String genre);
 	
 	@Query(value = "SELECT count(id) from book", nativeQuery = true)
 	int getTotalData();

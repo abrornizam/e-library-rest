@@ -24,4 +24,8 @@ public interface BookService {
 	void updateBookLeft(String idbook, int availability);
 	
 	List<Book> findByYear(String year);
+	
+	List<Book> findByGenre(String genre);
+	
+	List<Book> filterBook(String year, String genre);
 }

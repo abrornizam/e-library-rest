@@ -16,14 +16,15 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.library.rest.model.Book;
 import com.library.rest.model.Genre;
+import com.library.rest.service.AuthorService;
 import com.library.rest.service.BookService;
 import com.library.rest.service.GenreService;
-import com.library.rest.service.AuthorService;
 
 /**
  * @author ANIZAM
@@ -84,6 +85,30 @@ public class BookController {
 		response.setContentType("application/json");
 		response.setStatus(200);
 		return bookService.findByYear(year);
+	}
+	
+	@GetMapping(value = "/{genre}")
+	public @ResponseBody List<Book> listBookByGenre(@PathVariable String genre, HttpServletResponse response) {
+		response.setContentType("application/json");
+		response.setStatus(200);
+		return bookService.findByGenre(genre);
+	}
+	
+	@GetMapping(value = "/filter")
+	public @ResponseBody List<Book> filterBook(@RequestParam("year") String year, @RequestParam("genre") String genre, HttpServletResponse response) {
+		response.setContentType("application/json");
+		response.setStatus(200);
+		if(year.equalsIgnoreCase("Year") && genre.equalsIgnoreCase("Genre")){
+			return listBook(response);
+		}else if(year != "Year" && genre.equalsIgnoreCase("Genre")) {
+			return listBookByYear(year, response);
+		}else if(year.equalsIgnoreCase("Year") && genre != "Genre") {
+			return listBookByGenre(genre, response);
+		}else if(year != "Year" && genre != "Genre"){
+			return bookService.filterBook(year, genre);		
+		}else {
+			return listBook(response);
+		}
 	}
 	
 	/* GENRE */

@@ -88,8 +88,22 @@ public class BookServiceImpl implements BookService {
 	@Override
 	public List<Book> findByYear(String year) {
 		// TODO Auto-generated method stub
-		List<Book> listBook = bookRepository.findByYear(year);
-		return listBook;
+		List<Book> listBookYear = bookRepository.findByYear(year);
+		return listBookYear;
 	}
+
+	@Override
+	public List<Book> findByGenre(String genre) {
+		// TODO Auto-generated method stub
+		List<Book> listBookGenre = bookRepository.findByGenre(genre);
+		return listBookGenre;
+	}
+
+	@Override
+	public List<Book> filterBook(String year, String genre) {
+		// TODO Auto-generated method stub
+		List<Book> filterBook = bookRepository.filterBook(year, genre);
+		return filterBook;
+	}	
 	
 }
